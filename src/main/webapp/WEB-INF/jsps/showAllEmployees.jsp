@@ -24,7 +24,7 @@
       <a class="nav-link" href="showEmployees">Show Employees </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Employee Registration</a>
+      <a class="nav-link" href="register">Employee Registration</a>
     </li>
   </ul>
 </nav>
