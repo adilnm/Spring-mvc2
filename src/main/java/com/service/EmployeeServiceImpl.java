@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -30,9 +31,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<EmployeeEntity> findAllEmployees() {
+	public List<EmployeeDTO> findAllEmployees() {
 		List<EmployeeEntity> allEmployees = employeeDao.findAllEmployees();
-		return allEmployees;
+		List<EmployeeDTO> employeeDtoList = new ArrayList();
+		for (EmployeeEntity employee : allEmployees) {
+			EmployeeDTO employeeDTO = new EmployeeDTO();
+			BeanUtils.copyProperties(employee, employeeDTO);
+			employeeDtoList.add(employeeDTO);
+		}
+		return employeeDtoList;
 	}
 
 	@Override
@@ -45,6 +52,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public EmployeeDTO show(int employee_id) {
+		EmployeeDTO employeeDTO = new EmployeeDTO();
+		EmployeeEntity employeeEntity = employeeDao.show(employee_id);
+		if (employeeEntity != null) {
+			BeanUtils.copyProperties(employeeEntity, employeeDTO);
+			return employeeDTO;
+		}
+
+		return null;
+	}
+
+	@Override
+	public EmployeeDTO update(String empName, String emailId, String password, int salary) {
+		EmployeeDTO employeeDTO = new EmployeeDTO();
+		EmployeeEntity employeeEntity = employeeDao.update(empName, emailId, password, salary);
+		return employeeDTO;
+
 	}
 
 }

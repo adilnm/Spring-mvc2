@@ -12,4 +12,8 @@ public interface EmployeeDao {
 
 	int register(String empName, String emailId, String password, int salary);
 
+	EmployeeEntity show(int employee_id);
+
+	EmployeeEntity update(String empName, String emailId, String password, int salary);
+
 }

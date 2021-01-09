@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dao.EmployeeDao;
 import com.dto.EmployeeDTO;
-import com.entity.EmployeeEntity;
 import com.service.EmployeeService;
 
 @Controller
@@ -68,7 +67,7 @@ public class EmployeeController {
 
 	@GetMapping("/showEmployees")
 	String showAllEmployess(Model model) {
-		List<EmployeeEntity> employeesList = employeeService.findAllEmployees();
+		List<EmployeeDTO> employeesList = employeeService.findAllEmployees();
 		model.addAttribute("employeesList", employeesList);
 
 		return "showAllEmployees";
@@ -78,7 +77,6 @@ public class EmployeeController {
 	@GetMapping("/register")
 	String register() {
 		return "register";
-
 	}
 
 	@PostMapping("/registerEmployee")
@@ -94,6 +92,24 @@ public class EmployeeController {
 			model.addAttribute("msg", "Wrong credential..");
 			return "register";
 		}
+	}
+
+	@GetMapping("/edit")
+	String edit(@RequestParam int employee_id, Model model) {
+		EmployeeDTO employeeDTO = employeeService.show(employee_id);
+		model.addAttribute("employee", employeeDTO);
+		return "edit";
+	}
+
+	@PostMapping("/update")
+	String employeeUpdate(@RequestParam int employeeId, @RequestParam String empName, @RequestParam String emailId,
+			@RequestParam String password, @RequestParam int salary, Model model) {
+
+		System.out.println(employeeId);
+		EmployeeDTO employeeDTO = employeeService.update(empName, emailId, password, salary);
+
+		return "showAllEmployees";
+
 	}
 
 }

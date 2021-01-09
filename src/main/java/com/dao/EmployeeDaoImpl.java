@@ -56,4 +56,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return result;
 	}
 
+	@Override
+	public EmployeeEntity show(int employee_id) {
+		EmployeeEntity employeeEntity = null;
+
+		String sql = "Select * from employee where employeeId=?";
+		Object[] data = { employee_id };
+		try {
+			employeeEntity = jdbcTemplate.queryForObject(sql, data, new BeanPropertyRowMapper<>(EmployeeEntity.class));
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return employeeEntity;
+	}
+
 }
