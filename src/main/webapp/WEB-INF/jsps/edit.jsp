@@ -36,6 +36,7 @@
 				<div class="col-md-3">Salary</div><div class="col-md-9"><input type="text" name="salary" value="${employee.salary}"></div>
 			</div>
 			</br>
+			<input type="hidden" value="${employee.employeeId}" name="employeeId">
 			<button type="submit" class="btn btn-success">Update</button>
 		</form>
 	</div>

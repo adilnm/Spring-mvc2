@@ -105,8 +105,7 @@ public class EmployeeController {
 	String employeeUpdate(@RequestParam int employeeId, @RequestParam String empName, @RequestParam String emailId,
 			@RequestParam String password, @RequestParam int salary, Model model) {
 
-		System.out.println(employeeId);
-		EmployeeDTO employeeDTO = employeeService.update(empName, emailId, password, salary);
+		EmployeeDTO employeeDTO = employeeService.update(employeeId, empName, emailId, password, salary);
 
 		return "showAllEmployees";
 

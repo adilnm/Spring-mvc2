@@ -14,6 +14,6 @@ public interface EmployeeDao {
 
 	EmployeeEntity show(int employee_id);
 
-	EmployeeEntity update(String empName, String emailId, String password, int salary);
+	EmployeeEntity update(int employeeId, String empName, String emailId, String password, int salary);
 
 }

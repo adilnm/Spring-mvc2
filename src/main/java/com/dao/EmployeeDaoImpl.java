@@ -71,4 +71,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeeEntity;
 	}
 
+	@Override
+	public EmployeeEntity update(int employeeId, String empName, String emailId, String password, int salary) {
+		EmployeeEntity employeeEntity = null;
+		int result = 0;
+		String sql = "UPDATE employee SET employeeName = ?, salary = ?, emailId=?, PASSWORD=? WHERE  employeeId = ?";
+		Object[] data = { empName, salary, emailId, password, employeeId };
+		try {
+			result = jdbcTemplate.update(sql, data);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(result);
+		return employeeEntity;
+	}
+
 }
