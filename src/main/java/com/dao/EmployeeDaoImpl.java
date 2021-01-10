@@ -72,7 +72,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public EmployeeEntity update(int employeeId, String empName, String emailId, String password, int salary) {
+	public boolean update(int employeeId, String empName, String emailId, String password, int salary) {
 		EmployeeEntity employeeEntity = null;
 		int result = 0;
 		String sql = "UPDATE employee SET employeeName = ?, salary = ?, emailId=?, PASSWORD=? WHERE  employeeId = ?";
@@ -83,8 +83,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(result);
-		return employeeEntity;
+
+		if (result == 0) {
+			return false;
+		}
+		return true;
 	}
 
 }

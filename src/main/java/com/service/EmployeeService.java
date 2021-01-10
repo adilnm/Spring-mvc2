@@ -14,7 +14,7 @@ public interface EmployeeService {
 
 	boolean register(String empName, String emailId, String password, int salary);
 
-	EmployeeDTO update(int employeeId, String empName, String emailId, String password, int salary);
+	boolean update(int employeeId, String empName, String emailId, String password, int salary);
 
 	// List<Employee>findEmployee(emailId,password);
 

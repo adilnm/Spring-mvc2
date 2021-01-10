@@ -105,9 +105,13 @@ public class EmployeeController {
 	String employeeUpdate(@RequestParam int employeeId, @RequestParam String empName, @RequestParam String emailId,
 			@RequestParam String password, @RequestParam int salary, Model model) {
 
-		EmployeeDTO employeeDTO = employeeService.update(employeeId, empName, emailId, password, salary);
+		boolean success = employeeService.update(employeeId, empName, emailId, password, salary);
 
-		return "showAllEmployees";
+		if (success) {
+			return showAllEmployess(model);
+		}
+		model.addAttribute("msg", "Wrong credential..");
+		return "edit";
 
 	}
 

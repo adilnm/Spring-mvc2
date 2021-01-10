@@ -67,10 +67,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public EmployeeDTO update(int employeeId, String empName, String emailId, String password, int salary) {
-		EmployeeDTO employeeDTO = new EmployeeDTO();
-		EmployeeEntity employeeEntity = employeeDao.update(employeeId, empName, emailId, password, salary);
-		return employeeDTO;
+	public boolean update(int employeeId, String empName, String emailId, String password, int salary) {
+		boolean success = employeeDao.update(employeeId, empName, emailId, password, salary);
+		return success;
 
 	}
 
