@@ -56,6 +56,7 @@
 						<td>${employee.salary}</td>
 						<td>
 							<a href="/spring-mvc2-day7/edit?employee_id=${employee.employeeId}">Edit</a>
+							<a href="/spring-mvc2-day7/delete?employee_id=${employee.employeeId}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
