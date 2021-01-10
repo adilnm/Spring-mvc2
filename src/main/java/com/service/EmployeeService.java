@@ -16,6 +16,8 @@ public interface EmployeeService {
 
 	boolean update(int employeeId, String empName, String emailId, String password, int salary);
 
+	boolean delete(int employeeId);
+
 	// List<Employee>findEmployee(emailId,password);
 
 }

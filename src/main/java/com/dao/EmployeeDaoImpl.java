@@ -90,4 +90,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return true;
 	}
 
+	@Override
+	public boolean delete(int employeeId) {
+		EmployeeEntity employeeEntity = null;
+		int result = 0;
+		String sql = "delete from employee where employeeId = ?";
+		Object[] data = { employeeId };
+		try {
+			result = jdbcTemplate.update(sql, data);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(result);
+		return false;
+	}
+
 }

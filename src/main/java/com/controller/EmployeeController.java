@@ -115,4 +115,12 @@ public class EmployeeController {
 
 	}
 
+	@GetMapping("/delete")
+	String employeeDelete(@RequestParam int employee_id, Model model) {
+		System.out.println(employee_id);
+		boolean success = employeeService.delete(employee_id);
+		return showAllEmployess(model);
+
+	}
+
 }
