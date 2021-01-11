@@ -17,20 +17,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-	<div class="container">
-		<nav class="navbar navbar-expand-sm bg-light">
-		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="">LOGOUT</a></li>
-			<li class="nav-item"><a class="nav-link" href="showEmployees">Show
-					Employees </a></li>
-			<li class="nav-item"><a class="nav-link" href="register">Employee
-					Registration</a></li>
-		</ul>
-		</nav>
-		<br>
-
-	</div>
+<%@ include file="header.jspf" %>
 	<div class="container">
 		<h1>Employee Data.............</h1>
 		<br> <br>
@@ -54,9 +41,10 @@
 						<td>${employee.emailId}</td>
 						<td>${employee.password}</td>
 						<td>${employee.salary}</td>
-						<td>
-							<a href="/spring-mvc2-day7/edit?employee_id=${employee.employeeId}">Edit</a>
-							<a href="/spring-mvc2-day7/delete?employee_id=${employee.employeeId}">Delete</a>
+						<td><a
+							href="/spring-mvc2-day7/edit?employee_id=${employee.employeeId}">Edit</a>
+							<a
+							href="/spring-mvc2-day7/delete?employee_id=${employee.employeeId}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
