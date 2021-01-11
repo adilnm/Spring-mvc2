@@ -123,4 +123,16 @@ public class EmployeeController {
 
 	}
 
+	@PostMapping("/search")
+	String searchEmployee(@RequestParam String employeeName, Model model) {
+		EmployeeDTO employeeDTO = employeeService.search(employeeName);
+		if (employeeDTO != null) {
+			model.addAttribute("employee", employeeDTO);
+		} else {
+			model.addAttribute("msg", "Employee not found");
+		}
+
+		return "search";
+	}
+
 }

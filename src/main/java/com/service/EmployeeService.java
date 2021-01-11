@@ -18,6 +18,8 @@ public interface EmployeeService {
 
 	boolean delete(int employeeId);
 
+	EmployeeDTO search(String employeeName);
+
 	// List<Employee>findEmployee(emailId,password);
 
 }

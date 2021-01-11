@@ -18,4 +18,6 @@ public interface EmployeeDao {
 
 	boolean delete(int employeeId);
 
+	EmployeeEntity search(String employeeName);
+
 }

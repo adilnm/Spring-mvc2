@@ -19,7 +19,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeDTO authenticate(String emailId, String password) {
-		System.out.println("i m from service" + emailId + "" + password);
 		EmployeeDTO employeeDTO = new EmployeeDTO();
 		EmployeeEntity employeeEntity = employeeDao.authenticate(emailId, password);
 		if (employeeEntity != null) {
@@ -77,6 +76,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public boolean delete(int employeeId) {
 		boolean success = employeeDao.delete(employeeId);
 		return false;
+	}
+
+	@Override
+	public EmployeeDTO search(String employeeName) {
+		EmployeeDTO employeeDTO = new EmployeeDTO();
+		EmployeeEntity employeeEntity = employeeDao.search(employeeName);
+		if (employeeEntity != null) {
+			BeanUtils.copyProperties(employeeEntity, employeeDTO);
+			return employeeDTO;
+		}
+
+		return null;
 	}
 
 }
