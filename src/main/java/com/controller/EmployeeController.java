@@ -2,6 +2,9 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +56,12 @@ public class EmployeeController {
 //	}
 
 	@PostMapping("/authenticate")
-	String authenticateEmployee(@RequestParam String emailId, @RequestParam String password, Model model) {
+	String authenticateEmployee(@RequestParam String emailId, @RequestParam String password, Model model,
+			HttpServletRequest request) {
 		EmployeeDTO employeeDTO = employeeService.authenticate(emailId, password);
 		if (employeeDTO != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("emp", employeeDTO);
 			model.addAttribute("employee", employeeDTO);
 			return "showEmployee";
 
