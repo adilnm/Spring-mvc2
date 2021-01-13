@@ -22,7 +22,7 @@
 		
 		<form action="registerEmployee" method="post">
 			<div class="row">
-				<div class="col-md-3">Employee Name</div><div class="col-md-9"><input type="text" name="empName"></div>
+				<div class="col-md-3">Employee Name</div><div class="col-md-9"><input type="text" name="employeeName"></div>
 			</div>
 			</br>
 			<div class="row">

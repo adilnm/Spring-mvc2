@@ -41,7 +41,7 @@
 			</form>&nbsp
 			<c:choose>
 				<c:when test="${sessionScope.emp ne null}">
-					<span style="color: white; padding: 8px;">${sessionScope.emp.employeeName}</span>
+					<span style="color: white; padding: 8px;">${emp.employeeName}</span>
 					<a href="logout"><button
 							class="btn btn-outline-warning my-2 my-sm-0" type="submit">Logout</button></a>
 				</c:when>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,7 +17,6 @@ import com.dto.EmployeeDTO;
 import com.service.EmployeeService;
 
 @Controller
-
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
@@ -101,10 +101,12 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/registerEmployee")
-	String employeeRegistration(@RequestParam String empName, @RequestParam String emailId,
-			@RequestParam String password, @RequestParam int salary, Model model, HttpSession session) {
-		boolean success = employeeService.register(empName, emailId, password, salary);
+	// @ModelAttribute create an object and assign its attributes based on the
+	// registration form and then save it in the model
+	String employeeRegistration(@ModelAttribute("employee") EmployeeDTO employee, Model model, HttpSession session) {
 
+		boolean success = employeeService.register(employee.getEmployeeName(), employee.getEmailId(),
+				employee.getPassword(), employee.getSalary());
 		if (success) {
 			return showAllEmployess(model, session);
 
