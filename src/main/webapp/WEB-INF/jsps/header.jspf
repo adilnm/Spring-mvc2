@@ -18,8 +18,7 @@
 </head>
 <body>
 	<div class="container">
-		<img alt="" class="rounded" src="spring-mvc2-day8/src/main/webapp/WEB-INF/img/job.jpg" width="1110"
-			height="300">
+		<img alt="" class="rounded" src="img/job.jpg" width="1110" height="300">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">Home</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"

@@ -2,7 +2,6 @@ package com.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,15 @@ public class EmployeeController {
 	String showLoginPage() {
 		return "login";
 
+	}
+
+	@GetMapping("/logout")
+	String logout(HttpSession session) {
+
+		if (session.getAttribute("emp") != null) {
+			session.invalidate();
+		}
+		return "login";
 	}
 
 	// without using service layer
@@ -57,11 +65,12 @@ public class EmployeeController {
 
 	@PostMapping("/authenticate")
 	String authenticateEmployee(@RequestParam String emailId, @RequestParam String password, Model model,
-			HttpServletRequest request) {
+			HttpSession session) {
 		EmployeeDTO employeeDTO = employeeService.authenticate(emailId, password);
 		if (employeeDTO != null) {
-			HttpSession session = request.getSession();
+
 			session.setAttribute("emp", employeeDTO);
+			System.out.println(session.getAttribute("emp"));
 			model.addAttribute("employee", employeeDTO);
 			return "showEmployee";
 
@@ -72,7 +81,10 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/showEmployees")
-	String showAllEmployess(Model model) {
+	String showAllEmployess(Model model, HttpSession session) {
+		if (session.getAttribute("emp") == null) {
+			return "login";
+		}
 		List<EmployeeDTO> employeesList = employeeService.findAllEmployees();
 		model.addAttribute("employeesList", employeesList);
 
@@ -81,18 +93,20 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/register")
-	String register() {
+	String register(HttpSession session) {
+		if (session.getAttribute("emp") == null) {
+			return "login";
+		}
 		return "register";
 	}
 
 	@PostMapping("/registerEmployee")
 	String employeeRegistration(@RequestParam String empName, @RequestParam String emailId,
-			@RequestParam String password, @RequestParam int salary, Model model) {
-		System.out.println(salary);
+			@RequestParam String password, @RequestParam int salary, Model model, HttpSession session) {
 		boolean success = employeeService.register(empName, emailId, password, salary);
 
 		if (success) {
-			return showAllEmployess(model);
+			return showAllEmployess(model, session);
 
 		} else {
 			model.addAttribute("msg", "Wrong credential..");
@@ -101,7 +115,10 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/edit")
-	String edit(@RequestParam int employee_id, Model model) {
+	String edit(@RequestParam int employee_id, Model model, HttpSession session) {
+		if (session.getAttribute("emp") == null) {
+			return "login";
+		}
 		EmployeeDTO employeeDTO = employeeService.show(employee_id);
 		model.addAttribute("employee", employeeDTO);
 		return "edit";
@@ -109,12 +126,12 @@ public class EmployeeController {
 
 	@PostMapping("/update")
 	String employeeUpdate(@RequestParam int employeeId, @RequestParam String empName, @RequestParam String emailId,
-			@RequestParam String password, @RequestParam int salary, Model model) {
+			@RequestParam String password, @RequestParam int salary, Model model, HttpSession session) {
 
 		boolean success = employeeService.update(employeeId, empName, emailId, password, salary);
 
 		if (success) {
-			return showAllEmployess(model);
+			return showAllEmployess(model, session);
 		}
 		model.addAttribute("msg", "Wrong credential..");
 		return "edit";
@@ -122,15 +139,20 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/delete")
-	String employeeDelete(@RequestParam int employee_id, Model model) {
-		System.out.println(employee_id);
+	String employeeDelete(@RequestParam int employee_id, Model model, HttpSession session) {
+		if (session.getAttribute("emp") == null) {
+			return "login";
+		}
 		boolean success = employeeService.delete(employee_id);
-		return showAllEmployess(model);
+		return showAllEmployess(model, session);
 
 	}
 
 	@PostMapping("/search")
-	String searchEmployee(@RequestParam String employeeName, Model model) {
+	String searchEmployee(@RequestParam String employeeName, Model model, HttpSession session) {
+		if (session.getAttribute("emp") == null) {
+			return "login";
+		}
 		EmployeeDTO employeeDTO = employeeService.search(employeeName);
 		if (employeeDTO != null) {
 			model.addAttribute("employee", employeeDTO);

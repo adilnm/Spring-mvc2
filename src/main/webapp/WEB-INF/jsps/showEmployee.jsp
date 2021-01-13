@@ -14,23 +14,7 @@
 </head>
 <body>
 
-<div class="container">
-<nav class="navbar navbar-expand-sm bg-light">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="">LOGOUT</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="showEmployees">Show Employees </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Employee Registration</a>
-    </li>
-  </ul>
-</nav>
-<br>
-
-</div>
+<%@ include file="header.jspf" %>
 <div class="container">
 		<h1> Employee Data.............</h1><br><br>
 		

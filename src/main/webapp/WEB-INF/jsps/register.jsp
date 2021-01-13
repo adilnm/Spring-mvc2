@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,19 +16,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-expand-sm bg-light">
-			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="login">LOGIN</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="showEmployees">Show
-						Employees </a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Employee
-						Registration</a></li>
-			</ul>
-		</nav>
-		<br> ${ msg }
-	</div>
+	<%@ include file="header.jspf" %>
 	<div class="container">
 		<h1>Welcome to Registration</h1><br><br>
 		
