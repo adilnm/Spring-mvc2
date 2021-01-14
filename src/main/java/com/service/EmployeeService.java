@@ -20,6 +20,8 @@ public interface EmployeeService {
 
 	EmployeeDTO search(String employeeName);
 
+	String forget(String emailId);
+
 	// List<Employee>findEmployee(emailId,password);
 
 }

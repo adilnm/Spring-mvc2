@@ -26,8 +26,10 @@
 			<div class="row">
 				<div class="col-md-3">Password</div><div class="col-md-9"><input type="text" name="password"></div>
 			</div>
+			
 			<button type="submit" class="btn btn-success">Login</button>
 		</form>
+		<a href="/spring-mvc2-day7/forgotpassword">Forgot Password</a>
 	</div>
  
  

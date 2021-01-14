@@ -90,4 +90,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return null;
 	}
 
+	@Override
+	public String forget(String emailId) {
+		String password = employeeDao.forget(emailId);
+		return password;
+	}
+
 }

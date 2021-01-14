@@ -94,9 +94,6 @@ public class EmployeeController {
 
 	@GetMapping("/register")
 	String register(HttpSession session) {
-		if (session.getAttribute("emp") == null) {
-			return "login";
-		}
 		return "register";
 	}
 
@@ -163,6 +160,18 @@ public class EmployeeController {
 		}
 
 		return "search";
+	}
+
+	@GetMapping("/forgotpassword")
+	String forgotpassword() {
+		return "forgetPassword";
+	}
+
+	@PostMapping("/forget")
+	String forgetEmail(@RequestParam String emailId, Model model) {
+		String password = employeeService.forget(emailId);
+		model.addAttribute("password", password);
+		return "forgetPassword";
 	}
 
 }

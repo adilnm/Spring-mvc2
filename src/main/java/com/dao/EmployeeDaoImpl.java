@@ -120,4 +120,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeeEntity;
 	}
 
+	@Override
+	public String forget(String emailId) {
+		EmployeeEntity employeeEntity = null;
+
+		String sql = "Select * from employee where emailId=?";
+		Object[] data = { emailId };
+		try {
+			employeeEntity = jdbcTemplate.queryForObject(sql, data, new BeanPropertyRowMapper<>(EmployeeEntity.class));
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return employeeEntity.getPassword();
+	}
+
 }

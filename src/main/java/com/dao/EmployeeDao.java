@@ -20,4 +20,6 @@ public interface EmployeeDao {
 
 	EmployeeEntity search(String employeeName);
 
+	String forget(String emailId);
+
 }
