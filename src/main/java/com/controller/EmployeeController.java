@@ -105,7 +105,7 @@ public class EmployeeController {
 		boolean success = employeeService.register(employee.getEmployeeName(), employee.getEmailId(),
 				employee.getPassword(), employee.getSalary());
 		if (success) {
-			return showAllEmployess(model, session);
+			return "redirect:/showEmployees";
 
 		} else {
 			model.addAttribute("msg", "Wrong credential..");
@@ -130,7 +130,7 @@ public class EmployeeController {
 		boolean success = employeeService.update(employeeId, empName, emailId, password, salary);
 
 		if (success) {
-			return showAllEmployess(model, session);
+			return "redirect:/showEmployees";
 		}
 		model.addAttribute("msg", "Wrong credential..");
 		return "edit";
@@ -143,7 +143,7 @@ public class EmployeeController {
 			return "login";
 		}
 		boolean success = employeeService.delete(employee_id);
-		return showAllEmployess(model, session);
+		return "redirect:/showEmployees";
 
 	}
 
